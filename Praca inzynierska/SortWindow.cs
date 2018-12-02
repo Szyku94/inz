@@ -4,6 +4,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Drawing;
+using System.Threading;
 
 namespace Praca_inzynierska
 {
@@ -13,9 +14,15 @@ namespace Praca_inzynierska
         public SortWindow(int width, int height) : base(width, height, GraphicsMode.Default, "Sortowanie")
         {
             bars = new Bars(100);
-            bars.shuffle();
-            bars.shuffle();
-            bars.shuffle();
+            //bars.fewUnique(20);
+            //bars.reverseSort();
+            bars.random();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                Sort.Sort sort = new Sort.Bubble();
+                sort.sort(bars);
+            }).Start();
         }
         void drawBars()
         {
@@ -49,9 +56,9 @@ namespace Praca_inzynierska
             GL.LoadIdentity();
             GL.Enable(EnableCap.DepthTest);
         }
-        public void swap(int a, int b)
+        /*public void swap(int a, int b)
         {
             bars.swap(a, b);
-        }
+        }*/
     }
 }

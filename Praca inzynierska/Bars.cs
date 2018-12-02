@@ -15,10 +15,22 @@ namespace Praca_inzynierska
         {
             this.size = size;
             bars = new List<Bar>();
-            for(int i=0;i<size;i++)
+        }
+        public void random()
+        {
+            for (int i = 0; i < size; i++)
             {
                 bars.Add(new Bar(i));
             }
+            shuffle();
+        }
+        public void fewUnique(int number)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                bars.Add(new Bar((int)((i% (double)number / number + 1F/ number) *size)));
+            }
+            shuffle();
         }
         public void shuffle()
         {
@@ -28,9 +40,17 @@ namespace Praca_inzynierska
                 swap(random.Next(size), random.Next(size));
             }
         }
+        public void reverseSort()
+        {
+            bars.Clear();
+            for (int i = 0; i < size; i++)
+            {
+                bars.Add(new Bar(size-i));
+            }
+        }
         public void swap(int a,int b)
         {
-            Bar tmp = bars.ElementAt(a);
+            Bar tmp = new Bar(bars.ElementAt(a).value, bars.ElementAt(a).color);
             bars.ElementAt(a).color = bars.ElementAt(b).color;
             bars.ElementAt(a).value = bars.ElementAt(b).value;
             bars.ElementAt(b).color = tmp.color;

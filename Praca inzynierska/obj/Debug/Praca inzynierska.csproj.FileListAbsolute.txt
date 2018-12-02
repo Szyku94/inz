@@ -11,3 +11,16 @@ c:\users\przem\source\repos\Praca inzynierska\Praca inzynierska\bin\Debug\OpenTK
 c:\users\przem\source\repos\Praca inzynierska\Praca inzynierska\obj\Debug\Praca inzynierska.csproj.CopyComplete
 c:\users\przem\source\repos\Praca inzynierska\Praca inzynierska\obj\Debug\Praca inzynierska.exe
 c:\users\przem\source\repos\Praca inzynierska\Praca inzynierska\obj\Debug\Praca inzynierska.pdb
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\Praca inzynierska.exe.config
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\Praca inzynierska.exe
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\Praca inzynierska.pdb
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\OpenTK.dll
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\OpenTK.pdb
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\bin\Debug\OpenTK.xml
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.csprojAssemblyReference.cache
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca_inzynierska.Properties.Resources.resources
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.csproj.GenerateResource.cache
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.csproj.CoreCompileInputs.cache
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.csproj.CopyComplete
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.exe
+C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca inzynierska.pdb
