@@ -60,6 +60,10 @@ namespace Praca_inzynierska
         {
             return bars.ElementAt(i).value;
         }
+        public void setValue(int i, int value)
+        {
+            bars.ElementAt(i).value = value;
+        }
         public Color getColor(int i)
         {
             return bars.ElementAt(i).color;
