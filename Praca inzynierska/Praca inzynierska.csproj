@@ -65,8 +65,12 @@
     <Compile Include="SortWindow.cs" />
     <Compile Include="Sort\Bubble.cs" />
     <Compile Include="Sort\Cocktail.cs" />
+    <Compile Include="Sort\Comb.cs" />
     <Compile Include="Sort\Counting.cs" />
     <Compile Include="Sort\Insertion.cs" />
+    <Compile Include="Sort\Merge.cs" />
+    <Compile Include="Sort\Quick.cs" />
+    <Compile Include="Sort\Selection.cs" />
     <Compile Include="Sort\Shell.cs" />
     <Compile Include="Sort\Sort.cs" />
     <Compile Include="Unit.cs" />

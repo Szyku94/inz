@@ -20,7 +20,7 @@ namespace Praca_inzynierska
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                Sort.Sort sort = new Sort.Cocktail();
+                Sort.Sort sort = new Sort.Comb();
                 sort.sort(bars);
             }).Start();
         }
