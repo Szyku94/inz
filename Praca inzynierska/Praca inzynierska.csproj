@@ -64,6 +64,7 @@
     <Compile Include="Run.cs" />
     <Compile Include="SortWindow.cs" />
     <Compile Include="Sort\Bubble.cs" />
+    <Compile Include="Sort\Cocktail.cs" />
     <Compile Include="Sort\Counting.cs" />
     <Compile Include="Sort\Insertion.cs" />
     <Compile Include="Sort\Shell.cs" />
