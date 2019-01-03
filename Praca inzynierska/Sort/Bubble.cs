@@ -17,18 +17,12 @@ namespace Praca_inzynierska.Sort
                 bool swaped = false;
                 for (int j = 0; j < bars.size - 1 - i; j++)
                 {
-                    bars.setColor(j, Color.Blue);
-                    bars.setColor(j+1, Color.Blue);
                     if (bars.getValue(j) > bars.getValue(j+1))
                     {
-                        bars.setColor(j,Color.Yellow);
-                        bars.setColor(j+1, Color.Yellow);
                         bars.swap(j, j + 1);
                         swaped = true;
                     }
                     Thread.Sleep(1);
-                    bars.setColor(j, Color.White);
-                    bars.setColor(j + 1, Color.White);
                 }
                 if (!swaped)
                 {

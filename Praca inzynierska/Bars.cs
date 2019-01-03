@@ -24,11 +24,19 @@ namespace Praca_inzynierska
             }
             shuffle();
         }
+        public void zeros()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                bars.Add(new Bar(0));
+            }
+        }
         public void fewUnique(int number)
         {
             for (int i = 0; i < size; i++)
             {
-                bars.Add(new Bar((int)((i% (double)number / number + 1F/ number) *size)));
+                bars.Add(new Bar((int)((i% (double)number / number + 1F / number) *(size))-1));
+                Console.WriteLine(getValue(i));
             }
             shuffle();
         }
@@ -50,6 +58,8 @@ namespace Praca_inzynierska
         }
         public void swap(int a,int b)
         {
+            setColor(a, Color.Red);
+            setColor(b, Color.Red);
             Bar tmp = new Bar(bars.ElementAt(a).value, bars.ElementAt(a).color);
             bars.ElementAt(a).color = bars.ElementAt(b).color;
             bars.ElementAt(a).value = bars.ElementAt(b).value;
@@ -58,10 +68,12 @@ namespace Praca_inzynierska
         }
         public int getValue(int i)
         {
+            setColor(i, Color.White);
             return bars.ElementAt(i).value;
         }
         public void setValue(int i, int value)
         {
+            setColor(i, Color.Red);
             bars.ElementAt(i).value = value;
         }
         public Color getColor(int i)

@@ -13,14 +13,14 @@ namespace Praca_inzynierska
         Bars bars;
         public SortWindow(int width, int height) : base(width, height, GraphicsMode.Default, "Sortowanie")
         {
-            bars = new Bars(100);
-            //bars.fewUnique(20);
+            bars = new Bars(200);
+            //bars.fewUnique(4);
             //bars.reverseSort();
             bars.random();
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                Sort.Sort sort = new Sort.Insertion();
+                Sort.Sort sort = new Sort.Counting();
                 sort.sort(bars);
             }).Start();
         }

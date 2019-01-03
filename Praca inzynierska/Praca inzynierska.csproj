@@ -64,7 +64,9 @@
     <Compile Include="Run.cs" />
     <Compile Include="SortWindow.cs" />
     <Compile Include="Sort\Bubble.cs" />
+    <Compile Include="Sort\Counting.cs" />
     <Compile Include="Sort\Insertion.cs" />
+    <Compile Include="Sort\Shell.cs" />
     <Compile Include="Sort\Sort.cs" />
     <Compile Include="Unit.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
