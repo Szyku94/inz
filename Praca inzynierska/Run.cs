@@ -12,6 +12,10 @@ namespace Praca_inzynierska
         {
             using (SortWindow win = new SortWindow(800, 600))
             {
+                //win.Run(30.0);
+            }
+            using (PathfindingWindow win = new PathfindingWindow(800, 600))
+            {
                 win.Run(30.0);
             }
         }
