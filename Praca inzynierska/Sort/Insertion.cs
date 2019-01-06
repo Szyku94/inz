@@ -18,11 +18,11 @@ namespace Praca_inzynierska.Sort
                 int value = bars.getValue(i);
                 for (j = i - 1; j >= 0 && bars.getValue(j) > value; j--)
                 {
-                    Thread.Sleep(1);
                     bars.setValue(j + 1, bars.getValue(j));
+                    Thread.Sleep(1);
                 }
-                Thread.Sleep(1);
                 bars.setValue(j + 1, value);
+                Thread.Sleep(1);
             }
         }
     }

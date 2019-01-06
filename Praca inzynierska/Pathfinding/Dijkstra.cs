@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Praca_inzynierska.Pathfinding
 {
-    class AStar:Pathfinding
+    class Dijkstra : Pathfinding
     {
         override public List<Node> calculatePath(Point startP, Point goalP, Grid grid)
         {
@@ -18,16 +18,14 @@ namespace Praca_inzynierska.Pathfinding
             HashSet<Node> open = new HashSet<Node>();
             open.Add(start);
             var cameFrom = new Dictionary<Node, Node>();
-            var gScore = new Dictionary<Node, float>();
-            gScore[start] = 0;
-            var fScore = new Dictionary<Node, float>();
-            fScore[start] = heuristicCostEstimate(start, goal);
+            var d = new Dictionary<Node, float>();
+            d[start] = 0;
             while (open.Count > 0)
             {
                 Node min = open.ElementAt(0);
                 foreach (Node n in open)
                 {
-                    if (fScore[min] > fScore[n])
+                    if (d[min] > d[n])
                     {
                         min = n;
                     }
@@ -40,7 +38,7 @@ namespace Praca_inzynierska.Pathfinding
                 open.Remove(current);
                 grid.setVisited(current.point);
                 closed.Add(current);
-                foreach (Node neighbor in getNeighbors(current,grid))
+                foreach (Node neighbor in getNeighbors(current, grid))
                 {
                     if (closed.Contains(neighbor))
                     {
@@ -50,22 +48,21 @@ namespace Praca_inzynierska.Pathfinding
                     {
                         grid.setOpen(neighbor.point);
                         open.Add(neighbor);
-                        gScore[neighbor] = float.PositiveInfinity;
+                        d[neighbor] = float.PositiveInfinity;
                     }
-                    float tentative_gScore = gScore[current] + calcDistance(current,neighbor);
-                    if (tentative_gScore >= gScore[neighbor])
+                    float tentative_gScore = d[current] + 1;
+                    if (tentative_gScore >= d[neighbor])
                     {
                         continue;
                     }
                     cameFrom[neighbor] = current;
-                    gScore[neighbor] = tentative_gScore;
-                    fScore[neighbor] = gScore[neighbor] + heuristicCostEstimate(neighbor, goal);
+                    d[neighbor] = tentative_gScore;
                 }
             }
             return null;
 
         }
-        private List<Node> reconstructPath(Dictionary<Node, Node> cameFrom, Node current,Grid grid)
+        private List<Node> reconstructPath(Dictionary<Node, Node> cameFrom, Node current, Grid grid)
         {
             List<Node> path = new List<Node>();
             path.Add(current);
@@ -78,18 +75,18 @@ namespace Praca_inzynierska.Pathfinding
             path.RemoveAt(0);
             return path;
         }
-        private HashSet<Node> getNeighbors(Node n,Grid grid)
+        private HashSet<Node> getNeighbors(Node n, Grid grid)
         {
             HashSet<Node> neighbors = new HashSet<Node>();
-            for(int i=-1;i<=1;i++)
+            for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
                 {
-                    if(i==j||i+j==0)
+                    if (i == j || i + j == 0)
                     {
                         continue;
                     }
-                    if (n.X + i >= 0 && n.Y + j >= 0 && n.X + i < grid.width && n.Y + j < grid.height 
+                    if (n.X + i >= 0 && n.Y + j >= 0 && n.X + i < grid.width && n.Y + j < grid.height
                         && !grid.isWall(new Point(n.X + i, n.Y + j)))
                     {
                         neighbors.Add(new Node(new Point(n.X + i, n.Y + j)));
@@ -101,10 +98,6 @@ namespace Praca_inzynierska.Pathfinding
         private float heuristicCostEstimate(Node start, Node goal)
         {
             return (float)Math.Sqrt((start.X - goal.X) * (start.X - goal.X) + (start.Y - goal.Y) * (start.Y - goal.Y));
-        }
-        private float calcDistance(Node a, Node b)
-        {
-            return (float)Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
         }
     }
 }

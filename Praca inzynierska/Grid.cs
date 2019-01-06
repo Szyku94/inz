@@ -12,7 +12,7 @@ namespace Praca_inzynierska
 {
     class Grid
     {
-        public enum Cell { Wall,Empty,Visited,Path}
+        public enum Cell { Wall,Empty,Visited,Path,Open}
         public int width { get; }
         public int height { get; }
         public float cellWidth { get; }
@@ -54,25 +54,23 @@ namespace Praca_inzynierska
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if(cells[i,j]==Cell.Wall)
+                    if(cells[i, j] != Cell.Empty)
                     {
-                        GL.Color3(Color.Black);
-                        GL.Vertex2((float)i / width * 2F - 1F, (float)j / height * 2F - 1F);
-                        GL.Vertex2((i + 1F) / width * 2F - 1F, (float)j / height * 2F - 1F);
-                        GL.Vertex2((i + 1F) / width * 2F - 1F, (j + 1F) / height * 2F - 1F);
-                        GL.Vertex2((float)i / width * 2F - 1F, (j + 1F) / height * 2F - 1F);
-                    }
-                    else if (cells[i, j] == Cell.Visited)
-                    {
-                        GL.Color3(Color.Blue);
-                        GL.Vertex2((float)i / width * 2F - 1F, (float)j / height * 2F - 1F);
-                        GL.Vertex2((i + 1F) / width * 2F - 1F, (float)j / height * 2F - 1F);
-                        GL.Vertex2((i + 1F) / width * 2F - 1F, (j + 1F) / height * 2F - 1F);
-                        GL.Vertex2((float)i / width * 2F - 1F, (j + 1F) / height * 2F - 1F);
-                    }
-                    else if (cells[i, j] == Cell.Path)
-                    {
-                        GL.Color3(Color.Green);
+                        switch(cells[i, j])
+                        {
+                            case Cell.Wall:
+                                GL.Color3(Color.Black);
+                                break;
+                            case Cell.Path:
+                                GL.Color3(Color.Green);
+                                break;
+                            case Cell.Visited:
+                                GL.Color3(Color.Blue);
+                                break;
+                            case Cell.Open:
+                                GL.Color3(Color.AliceBlue);
+                                break;
+                        }
                         GL.Vertex2((float)i / width * 2F - 1F, (float)j / height * 2F - 1F);
                         GL.Vertex2((i + 1F) / width * 2F - 1F, (float)j / height * 2F - 1F);
                         GL.Vertex2((i + 1F) / width * 2F - 1F, (j + 1F) / height * 2F - 1F);
@@ -106,6 +104,11 @@ namespace Praca_inzynierska
         public void setPath(Point point)
         {
             cells[point.X, point.Y] = Cell.Path;
+        }
+        public void setOpen(Point point)
+        {
+            if(cells[point.X, point.Y]!= Cell.Visited)
+            cells[point.X, point.Y] = Cell.Open;
         }
         public void clear()
         {

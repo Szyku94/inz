@@ -60,11 +60,13 @@ namespace Praca_inzynierska
         {
             setColor(a, Color.Red);
             setColor(b, Color.Red);
-            Bar tmp = new Bar(bars.ElementAt(a).value, bars.ElementAt(a).color);
-            bars.ElementAt(a).color = bars.ElementAt(b).color;
+            Bar tmp = new Bar(bars.ElementAt(a).value);
             bars.ElementAt(a).value = bars.ElementAt(b).value;
-            bars.ElementAt(b).color = tmp.color;
             bars.ElementAt(b).value = tmp.value;
+        }
+        public int getValueOnly(int i)
+        {
+            return bars.ElementAt(i).value;
         }
         public int getValue(int i)
         {

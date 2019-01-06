@@ -20,7 +20,7 @@ namespace Praca_inzynierska
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                Sort.Sort sort = new Sort.Comb();
+                Sort.Sort sort = new Sort.Heap();
                 sort.sort(bars);
             }).Start();
         }
@@ -56,9 +56,5 @@ namespace Praca_inzynierska
             GL.LoadIdentity();
             GL.Enable(EnableCap.DepthTest);
         }
-        /*public void swap(int a, int b)
-        {
-            bars.swap(a, b);
-        }*/
     }
 }

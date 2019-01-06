@@ -35,8 +35,8 @@ namespace Praca_inzynierska.Sort
                     i++;
                 if (i < j)
                 {
-                    Thread.Sleep(30);
                     bars.swap(i++, j--);
+                    Thread.Sleep(30);
                 }
                 else
                     return j;

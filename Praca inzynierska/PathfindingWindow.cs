@@ -5,6 +5,7 @@ using System.Drawing;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using Praca_inzynierska.Pathfinding;
+using System.Threading;
 
 namespace Praca_inzynierska
 {
@@ -15,7 +16,6 @@ namespace Praca_inzynierska
         float transX;
         float transY;
         Grid grid;
-        bool firstClick;
         public PathfindingWindow(int width, int height) : base(width, height, GraphicsMode.Default, "Pathfinding")
         {
             grid = new Grid(50, 50);
@@ -23,7 +23,6 @@ namespace Praca_inzynierska
             scale = 1;
             transX = 0;
             transY = 0;
-            firstClick = true;
         }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
@@ -34,41 +33,36 @@ namespace Praca_inzynierska
             float mouseY = -1 * (Mouse.Y * 2.0F / Height - 1);
             Point gridMousePosition = grid.convert(transform(new PointF(mouseX, mouseY)));
             PointF transformedMousePosition = grid.convert(gridMousePosition);
-            //Console.WriteLine(transformedMousePosition.X + " " + (transformedMousePosition.Y));
-            /*if (keyboard[OpenTK.Input.Key.Escape])
+            if (keyboard[OpenTK.Input.Key.Escape])
             {
                 Exit();
-            }*/
+            }
             if (keyboard[OpenTK.Input.Key.Space])
             {
                 grid.clearPaths();
-                AStar.calculatePath(grid.convert(unit.center), gridMousePosition, grid);
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Pathfinding.Pathfinding pathfinding = new AStar();
+                    pathfinding.calculatePath(grid.convert(unit.center), gridMousePosition, grid);
+                }).Start();
+                
             }
             if (mouse[OpenTK.Input.MouseButton.Left])
             {
+                grid.clearPaths();
                 grid.setWall(new PointF(transformedMousePosition.X, transformedMousePosition.Y));
             }
             if (mouse[OpenTK.Input.MouseButton.Right])
             {
+                grid.clearPaths();
                 grid.unsetWall(new PointF(transformedMousePosition.X, transformedMousePosition.Y));
             }
-            /*if (mouse[OpenTK.Input.MouseButton.Right])
+            if (keyboard[OpenTK.Input.Key.C])
             {
-                foreach (Unit unit in units)
-                {
-                    if (unit.isSelected())
-                    {
-                        List<PointF> path = new List<PointF>();
-                        foreach (Node n in AStar.calculatePath(grid.convert(unit.center), gridMousePosition))
-                        {
-                            path.Add(grid.convert(n.point));
-                        }
-                        unit.moveTo(path);
-                    }
-                }
+                grid.clearPaths();
+                unit = new Unit(new PointF(transformedMousePosition.X, transformedMousePosition.Y), grid.cellWidth / 2);
             }
-
-            //Console.WriteLine(mouseX+" "+mouseY);*/
             if (keyboard[OpenTK.Input.Key.X])
             {
                 scale *= 1.1f;
@@ -139,7 +133,6 @@ namespace Praca_inzynierska
             base.OnResize(e);
             GL.Viewport(ClientRectangle);
             GL.MatrixMode(MatrixMode.Projection);
-            //GL.LoadIdentity();
             GL.Frustum(-1, 1, -1, 1, 0, 0);
 
         }

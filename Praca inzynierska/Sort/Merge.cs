@@ -49,8 +49,8 @@ namespace Praca_inzynierska.Sort
             }
             for (i=0; i<temp.size;i++)
             {
-                Thread.Sleep(3);
                 bars.setValue(p+i, temp.getValue(i));
+                Thread.Sleep(3);
             }
         }
     }

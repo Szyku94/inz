@@ -31,11 +31,11 @@ namespace Praca_inzynierska.Sort
                 int value = bars.getValue(i);
                 for (j = i - step; j >= 0 && bars.getValue(j) > value; j-=step)
                 {
-                    Thread.Sleep(1);
                     bars.setValue(j + step, bars.getValue(j));
+                    Thread.Sleep(1);
                 }
-                Thread.Sleep(1);
                 bars.setValue(j + step, value);
+                Thread.Sleep(1);
             }
         }
         bool checkIfSorted(Bars bars)

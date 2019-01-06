@@ -30,8 +30,8 @@ namespace Praca_inzynierska.Sort
                     Thread.Sleep(10);
                     if (bars.getValue(i)>bars.getValue(i+gap))
                     {
-                        Thread.Sleep(10);
                         bars.swap(i, i + gap);
+                        Thread.Sleep(10);
                         sorted = false;
                     }
                 }
