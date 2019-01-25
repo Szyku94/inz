@@ -26,3 +26,4 @@ C:\Users\marty\OneDrive\Desktop\inzynierka\inz\Praca inzynierska\obj\Debug\Praca
 C:\Users\Przem\source\repos\Praca inzynierska\Praca inzynierska\bin\Debug\OpenGL.Net.dll
 C:\Users\Przem\source\repos\Praca inzynierska\Praca inzynierska\bin\Debug\OpenGL.Net.pdb
 C:\Users\Przem\source\repos\Praca inzynierska\Praca inzynierska\bin\Debug\OpenGL.Net.xml
+C:\Users\Przem\source\repos\Praca inzynierska\Praca inzynierska\obj\Debug\Praca_inzynierska.MainForm.resources

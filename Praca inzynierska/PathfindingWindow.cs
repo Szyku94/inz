@@ -16,13 +16,15 @@ namespace Praca_inzynierska
         float transX;
         float transY;
         Grid grid;
-        public PathfindingWindow(int width, int height) : base(width, height, GraphicsMode.Default, "Pathfinding")
+        Pathfinding.Pathfinding pathfinding;
+        public PathfindingWindow(int width, int height, Pathfinding.Pathfinding algorithm) : base(width, height, GraphicsMode.Default, "Pathfinding")
         {
             grid = new Grid(50, 50);
             unit = new Unit(grid.cellWidth / 2, grid.cellWidth / 2, grid.cellWidth / 2);
             scale = 1;
             transX = 0;
             transY = 0;
+            Pathfinding.Pathfinding pathfinding = algorithm;
         }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {

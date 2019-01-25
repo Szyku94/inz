@@ -11,16 +11,27 @@ namespace Praca_inzynierska
     class SortWindow:GameWindow
     {
         Bars bars;
-        public SortWindow(int width, int height) : base(width, height, GraphicsMode.Default, "Sortowanie")
+        public SortWindow(int width, int height,int numberOfElements, Sort.Sort sort, int startingData) : base(width, height, GraphicsMode.Default, "Sortowanie")
         {
-            bars = new Bars(200);
-            //bars.fewUnique(4);
-            //bars.reverseSort();
-            bars.random();
+            bars = new Bars(numberOfElements);
+            switch(startingData)
+            {
+                case 0:
+                    bars.random();
+                    break;
+                case 1:
+                    bars.fewUnique(4);
+                    break;
+                case 2:
+                    bars.reverseSort();
+                    break;
+                default:
+                    bars.random();
+                    break;
+            }
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                Sort.Sort sort = new Sort.Heap();
                 sort.sort(bars);
             }).Start();
         }
