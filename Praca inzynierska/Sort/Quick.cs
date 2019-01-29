@@ -15,6 +15,7 @@ namespace Praca_inzynierska.Sort
         }
         private void quickSort(Bars bars, int p, int r)
         {
+            while (isPaused()) ;
             int q;
             if(p<r)
             {
@@ -26,15 +27,22 @@ namespace Praca_inzynierska.Sort
         private int partition(Bars bars, int p, int r)
         {
             int x = bars.getValue(p);
-            int i = p, j = r, w;
+            int i = p, j = r;
             while(true)
             {
                 while (bars.getValue(j) > x)
+                {
+                    while (isPaused()) ;
                     j--;
+                }
                 while (bars.getValue(i) < x)
+                {
+                    while (isPaused()) ;
                     i++;
+                }
                 if (i < j)
                 {
+                    while (isPaused()) ;
                     bars.swap(i++, j--);
                     Thread.Sleep(30);
                 }

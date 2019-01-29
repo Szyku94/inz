@@ -31,6 +31,7 @@ namespace Praca_inzynierska.Sort
                 int value = bars.getValue(i);
                 for (j = i - step; j >= 0 && bars.getValue(j) > value; j-=step)
                 {
+                    while (isPaused()) ;
                     bars.setValue(j + step, bars.getValue(j));
                     Thread.Sleep(1);
                 }

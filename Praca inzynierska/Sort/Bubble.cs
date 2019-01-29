@@ -17,6 +17,7 @@ namespace Praca_inzynierska.Sort
                 bool swaped = false;
                 for (int j = 0; j < bars.size - 1 - i; j++)
                 {
+                    while (isPaused());
                     if (bars.getValue(j) > bars.getValue(j+1))
                     {
                         bars.swap(j, j + 1);

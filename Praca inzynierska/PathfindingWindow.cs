@@ -6,6 +6,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using Praca_inzynierska.Pathfinding;
 using System.Threading;
+using OpenTK.Input;
 
 namespace Praca_inzynierska
 {
@@ -17,6 +18,7 @@ namespace Praca_inzynierska
         float transY;
         Grid grid;
         Pathfinding.Pathfinding pathfinding;
+        KeyboardState keyboardState, lastKeyboardState;
         public PathfindingWindow(int width, int height, Pathfinding.Pathfinding algorithm) : base(width, height, GraphicsMode.Default, "Pathfinding")
         {
             grid = new Grid(50, 50);
@@ -29,17 +31,17 @@ namespace Praca_inzynierska
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
-            var keyboard = OpenTK.Input.Keyboard.GetState();
+            keyboardState = OpenTK.Input.Keyboard.GetState();
             var mouse = Mouse.GetState();
             float mouseX = Mouse.X * 2.0F / Width - 1;
             float mouseY = -1 * (Mouse.Y * 2.0F / Height - 1);
             Point gridMousePosition = grid.convert(transform(new PointF(mouseX, mouseY)));
             PointF transformedMousePosition = grid.convert(gridMousePosition);
-            if (keyboard[OpenTK.Input.Key.Escape])
+            if (IsKeyPressed(Key.Escape))
             {
                 Exit();
             }
-            if (keyboard[OpenTK.Input.Key.Space])
+            if (IsKeyPressed(Key.Space))
             {
                 grid.clearPaths();
                 new Thread(() =>
@@ -50,27 +52,27 @@ namespace Praca_inzynierska
                 }).Start();
                 
             }
-            if (mouse[OpenTK.Input.MouseButton.Left])
+            if (mouse[MouseButton.Left])
             {
                 grid.clearPaths();
                 grid.setWall(new PointF(transformedMousePosition.X, transformedMousePosition.Y));
             }
-            if (mouse[OpenTK.Input.MouseButton.Right])
+            if (mouse[MouseButton.Right])
             {
                 grid.clearPaths();
                 grid.unsetWall(new PointF(transformedMousePosition.X, transformedMousePosition.Y));
             }
-            if (keyboard[OpenTK.Input.Key.C])
+            if (IsKeyPressed(Key.C))
             {
                 grid.clearPaths();
                 unit = new Unit(new PointF(transformedMousePosition.X, transformedMousePosition.Y), grid.cellWidth / 2);
             }
-            if (keyboard[OpenTK.Input.Key.X])
+            if (keyboardState[Key.X])
             {
                 scale *= 1.1f;
                 transform();
             }
-            if (keyboard[OpenTK.Input.Key.Z])
+            if (keyboardState[Key.Z])
             {
                 if (scale * 0.9f >= 1)
                 {
@@ -82,7 +84,7 @@ namespace Praca_inzynierska
                 }
                 transform();
             }
-            if (keyboard[OpenTK.Input.Key.A])
+            if (keyboardState[Key.A])
             {
                 if ((1 - transX) * scale >= 1f)
                 {
@@ -90,7 +92,7 @@ namespace Praca_inzynierska
                 }
                 transform();
             }
-            if (keyboard[OpenTK.Input.Key.D])
+            if (keyboardState[Key.D])
             {
                 if ((1 + transX) * scale >= 1f)
                 {
@@ -98,7 +100,7 @@ namespace Praca_inzynierska
                 }
                 transform();
             }
-            if (keyboard[OpenTK.Input.Key.W])
+            if (keyboardState[Key.W])
             {
                 if ((1 + transY) * scale >= 1f)
                 {
@@ -106,7 +108,7 @@ namespace Praca_inzynierska
                 }
                 transform();
             }
-            if (keyboard[OpenTK.Input.Key.S])
+            if (keyboardState[Key.S])
             {
                 if ((1 - transY) * scale >= 1f)
                 {
@@ -114,6 +116,11 @@ namespace Praca_inzynierska
                 }
                 transform();
             }
+            lastKeyboardState = keyboardState;
+        }
+        public bool IsKeyPressed(Key key)
+        {
+            return (keyboardState[key] && (keyboardState[key] != lastKeyboardState[key]));
         }
         void draw()
         {

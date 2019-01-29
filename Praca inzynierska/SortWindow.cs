@@ -11,8 +11,11 @@ namespace Praca_inzynierska
     class SortWindow:GameWindow
     {
         Bars bars;
+        Sort.Sort sort;
+        KeyboardState keyboardState, lastKeyboardState;
         public SortWindow(int width, int height,int numberOfElements, Sort.Sort sort, int startingData) : base(width, height, GraphicsMode.Default, "Sortowanie")
         {
+            this.sort = sort;
             bars = new Bars(numberOfElements);
             switch(startingData)
             {
@@ -49,6 +52,28 @@ namespace Praca_inzynierska
                 GL.Vertex3(i * barWidth - 1, bars.getValue(i) * barHight-1, 0);
             }
             GL.End();
+        }
+        protected override void OnUpdateFrame(FrameEventArgs e)
+        {
+            base.OnUpdateFrame(e);
+            keyboardState = OpenTK.Input.Keyboard.GetState();
+            if (IsKeyPressed(Key.Escape))
+            {
+                Exit();
+            }
+            if (IsKeyPressed(Key.Space))
+            {
+                sort.changePause();
+            }
+            if (keyboardState[Key.S])
+            {
+                sort.nextStep();
+            }
+            lastKeyboardState = keyboardState;
+        }
+        public bool IsKeyPressed(Key key)
+        {
+            return (keyboardState[key] && (keyboardState[key] != lastKeyboardState[key]));
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {

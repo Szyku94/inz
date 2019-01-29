@@ -27,6 +27,7 @@ namespace Praca_inzynierska.Sort
                 {
                     bars.setColor(i, Color.Green);
                     bars.setColor(i+gap, Color.Green);
+                    while (isPaused()) ;
                     Thread.Sleep(10);
                     if (bars.getValue(i)>bars.getValue(i+gap))
                     {

@@ -22,6 +22,7 @@ namespace Praca_inzynierska.Sort
             for (int i = 0; i < bars.size; i++)
             {
                 bars.setColor(i, Color.Red);
+                while (isPaused()) ;
                 Thread.Sleep(3);
                 count[bars.getValue(i)]++;
             }
@@ -33,13 +34,14 @@ namespace Praca_inzynierska.Sort
             for (int i = bars.size - 1; i >= 0; i--)
             {
                 bars.setColor(i, Color.Red);
+                while (isPaused()) ;
                 Thread.Sleep(3);
                 temp.setValue(--count[bars.getValue(i)],bars.getValue(i));
             }
             for (int i = 0; i < bars.size; i++)//podmiana orginalnej tablicy
             {
-                
                 bars.setValue(i, temp.getValue(i));
+                while (isPaused()) ;
                 Thread.Sleep(3);
             }
         }

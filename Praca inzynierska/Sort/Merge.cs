@@ -15,7 +15,8 @@ namespace Praca_inzynierska.Sort
         }
         private void mergeSort(Bars bars, int p, int r)
         {
-            if(p<r)
+            while (isPaused()) ;
+            if (p<r)
             {
                 int q = (p + r) / 2;
                 mergeSort(bars, p, q);
@@ -30,6 +31,7 @@ namespace Praca_inzynierska.Sort
             int i = p, j = q+1,k=0;
             while (i<=q && j<=r)
             {
+                while (isPaused()) ;
                 if (bars.getValue(i) < bars.getValue(j))
                 {
                     temp.setValue(k++, bars.getValue(i++));
@@ -41,14 +43,17 @@ namespace Praca_inzynierska.Sort
             }
             while (i <= q)
             {
+                while (isPaused()) ;
                 temp.setValue(k++, bars.getValue(i++));
             }
             while (j <= r)
             {
+                while (isPaused()) ;
                 temp.setValue(k++, bars.getValue(j++));
             }
             for (i=0; i<temp.size;i++)
             {
+                while (isPaused()) ;
                 bars.setValue(p+i, temp.getValue(i));
                 Thread.Sleep(3);
             }
