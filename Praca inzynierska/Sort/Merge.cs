@@ -12,6 +12,7 @@ namespace Praca_inzynierska.Sort
         public override void sort(Bars bars)
         {
             mergeSort(bars, 0, bars.size-1);
+            finished = true;
         }
         private void mergeSort(Bars bars, int p, int r)
         {
@@ -34,27 +35,37 @@ namespace Praca_inzynierska.Sort
                 while (isPaused()) ;
                 if (bars.getValue(i) < bars.getValue(j))
                 {
+                    accesses++;
+                    comparisons++;
                     temp.setValue(k++, bars.getValue(i++));
+                    accesses++;
                 }
                 else
                 {
                     temp.setValue(k++, bars.getValue(j++));
+                    accesses++;
                 }
             }
             while (i <= q)
             {
                 while (isPaused()) ;
                 temp.setValue(k++, bars.getValue(i++));
+                accesses++;
+                accesses++;
             }
             while (j <= r)
             {
                 while (isPaused()) ;
                 temp.setValue(k++, bars.getValue(j++));
+                accesses++;
+                accesses++;
             }
             for (i=0; i<temp.size;i++)
             {
                 while (isPaused()) ;
                 bars.setValue(p+i, temp.getValue(i));
+                accesses++;
+                accesses++;
                 Thread.Sleep(3);
             }
         }

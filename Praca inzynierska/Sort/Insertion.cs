@@ -16,15 +16,22 @@ namespace Praca_inzynierska.Sort
             {
                 int j;
                 int value = bars.getValue(i);
+                accesses++;
                 for (j = i - 1; j >= 0 && bars.getValue(j) > value; j--)
                 {
-                    while (isPaused()) ;
+                    accesses++;
+                    comparisons++;
+                    while (isPaused());
                     bars.setValue(j + 1, bars.getValue(j));
+                    accesses++;
+                    accesses++;
                     Thread.Sleep(1);
                 }
                 bars.setValue(j + 1, value);
+                accesses++;
                 Thread.Sleep(1);
             }
+            finished = true;
         }
     }
 }

@@ -5,6 +5,7 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Praca_inzynierska
 {
@@ -13,7 +14,7 @@ namespace Praca_inzynierska
         Bars bars;
         Sort.Sort sort;
         KeyboardState keyboardState, lastKeyboardState;
-        public SortWindow(int width, int height,int numberOfElements, Sort.Sort sort, int startingData) : base(width, height, GraphicsMode.Default, "Sortowanie")
+        public SortWindow(int width, int height,int numberOfElements, Sort.Sort sort, int startingData, string title) : base(width, height, GraphicsMode.Default, title)
         {
             this.sort = sort;
             bars = new Bars(numberOfElements);
@@ -78,6 +79,13 @@ namespace Praca_inzynierska
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
+            if(sort.isFinished())
+            {
+                MessageBox.Show("Porównania: " + sort.getComparisons()
+                    + "\nIlość dostępów do tablicy: " + sort.getAccesses()
+                    , "", MessageBoxButtons.OK);
+                sort.setFinished(false);
+            }
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.ClearColor(Color.CornflowerBlue);
             drawBars();

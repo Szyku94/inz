@@ -21,7 +21,8 @@ namespace Praca_inzynierska.Sort
                     sortInsert(bars, step, i);
                 }
                 k++;
-            } while (step > 1 && !checkIfSorted(bars));
+            } while (step > 1);
+            finished = true;
         }
         void sortInsert(Bars bars, int step, int start)
         {
@@ -29,26 +30,20 @@ namespace Praca_inzynierska.Sort
             {
                 int j;
                 int value = bars.getValue(i);
+                accesses++;
                 for (j = i - step; j >= 0 && bars.getValue(j) > value; j-=step)
                 {
-                    while (isPaused()) ;
+                    accesses++;
+                    comparisons++;
+                    while (isPaused());
                     bars.setValue(j + step, bars.getValue(j));
+                    accesses++;
                     Thread.Sleep(1);
                 }
                 bars.setValue(j + step, value);
+                accesses++;
                 Thread.Sleep(1);
             }
-        }
-        bool checkIfSorted(Bars bars)
-        {
-            for (int i = 1; i < bars.size; i++)
-            {
-                if (bars.getValue(i - 1) > bars.getValue(i))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }

@@ -22,10 +22,15 @@ namespace Praca_inzynierska.Sort
                     bars.setColor(max, Color.Green);
                     Thread.Sleep(3);
                     max = bars.getValue(max) < bars.getValue(j) ? j : max;
+                    accesses++;
+                    comparisons++;
                 }
                 Thread.Sleep(3);
                 if (max != i - 1)
                     bars.swap(i - 1, max);
+                accesses++;
+                accesses++;
+                accesses++;
             }
         }
     }

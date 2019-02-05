@@ -9,6 +9,9 @@ namespace Praca_inzynierska.Sort
 {
     abstract class Sort
     {
+        protected bool finished = false;
+        protected int comparisons = 0;
+        protected int accesses = 0;
         private bool step;
         private bool paused = true;
         public abstract void sort(Bars bars);
@@ -29,6 +32,22 @@ namespace Praca_inzynierska.Sort
         {
             paused = false;
             step = true;
+        }
+        public int getComparisons()
+        {
+            return comparisons;
+        }
+        public int getAccesses()
+        {
+            return accesses;
+        }
+        public bool isFinished()
+        {
+            return finished;
+        }
+        public void setFinished(bool finished)
+        {
+            this.finished = finished;
         }
     }
 }

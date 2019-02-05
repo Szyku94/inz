@@ -19,14 +19,14 @@ namespace Praca_inzynierska
         Grid grid;
         Pathfinding.Pathfinding pathfinding;
         KeyboardState keyboardState, lastKeyboardState;
-        public PathfindingWindow(int width, int height, Pathfinding.Pathfinding algorithm) : base(width, height, GraphicsMode.Default, "Pathfinding")
+        public PathfindingWindow(int width, int height, Pathfinding.Pathfinding algorithm, string title) : base(width, height, GraphicsMode.Default, title)
         {
             grid = new Grid(50, 50);
             unit = new Unit(grid.cellWidth / 2, grid.cellWidth / 2, grid.cellWidth / 2);
             scale = 1;
             transX = 0;
             transY = 0;
-            Pathfinding.Pathfinding pathfinding = algorithm;
+            pathfinding = algorithm;
         }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
@@ -47,7 +47,6 @@ namespace Praca_inzynierska
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    Pathfinding.Pathfinding pathfinding = new AStar();
                     pathfinding.calculatePath(grid.convert(unit.center), gridMousePosition, grid);
                 }).Start();
                 

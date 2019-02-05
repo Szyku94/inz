@@ -20,7 +20,12 @@ namespace Praca_inzynierska.Sort
                     while (isPaused());
                     if (bars.getValue(j) > bars.getValue(j+1))
                     {
+                        accesses++;
+                        comparisons++;
                         bars.swap(j, j + 1);
+                        accesses++;
+                        accesses++;
+                        accesses++;
                         swaped = true;
                     }
                     Thread.Sleep(1);
@@ -30,6 +35,7 @@ namespace Praca_inzynierska.Sort
                     break;
                 }
             }
+            finished = true;
         }
     }
 }

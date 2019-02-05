@@ -31,12 +31,18 @@ namespace Praca_inzynierska.Sort
                     Thread.Sleep(10);
                     if (bars.getValue(i)>bars.getValue(i+gap))
                     {
+                        accesses++;
+                        comparisons++;
                         bars.swap(i, i + gap);
+                        accesses++;
+                        accesses++;
+                        accesses++;
                         Thread.Sleep(10);
                         sorted = false;
                     }
                 }
             }
+            finished = true;
         }
     }
 }

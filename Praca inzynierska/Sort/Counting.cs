@@ -25,10 +25,12 @@ namespace Praca_inzynierska.Sort
                 while (isPaused()) ;
                 Thread.Sleep(3);
                 count[bars.getValue(i)]++;
+                accesses++;
             }
             for (int i = 1; i < bars.size; i++) //podsumowywanie tablicy aby ukazywała miejsca poszukiwanych znaków
             {
                 count[i] += count[i - 1];
+                accesses++;
             }
             //przechodzenie tablicy ciągów znaku i zmiana miejsc według tablicy zliczającej
             for (int i = bars.size - 1; i >= 0; i--)
@@ -41,9 +43,11 @@ namespace Praca_inzynierska.Sort
             for (int i = 0; i < bars.size; i++)//podmiana orginalnej tablicy
             {
                 bars.setValue(i, temp.getValue(i));
+                accesses++;
                 while (isPaused()) ;
                 Thread.Sleep(3);
             }
+            finished = true;
         }
     }
 }

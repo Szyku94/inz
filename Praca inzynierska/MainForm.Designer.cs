@@ -30,21 +30,23 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.SortTabPage = new System.Windows.Forms.TabPage();
+            this.SortNumberOfElementsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SortNumberOfElementsLabel = new System.Windows.Forms.Label();
             this.SortStartingDataLabel = new System.Windows.Forms.Label();
             this.SortAlgorithmLabel = new System.Windows.Forms.Label();
             this.SortStartingDataComboBox = new System.Windows.Forms.ComboBox();
             this.SortAlgorithmComboBox = new System.Windows.Forms.ComboBox();
             this.SortStartButton = new System.Windows.Forms.Button();
             this.PathfindingTabPage = new System.Windows.Forms.TabPage();
-            this.SortNumberOfElementsLabel = new System.Windows.Forms.Label();
-            this.SortNumberOfElementsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.PathfindingAlgorithmLabel = new System.Windows.Forms.Label();
             this.PathfindingAlgorithmComboBox = new System.Windows.Forms.ComboBox();
             this.PathfindingStartButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.SortTabPage.SuspendLayout();
-            this.PathfindingTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SortNumberOfElementsNumericUpDown)).BeginInit();
+            this.PathfindingTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -59,6 +61,7 @@
             // 
             // SortTabPage
             // 
+            this.SortTabPage.Controls.Add(this.label1);
             this.SortTabPage.Controls.Add(this.SortNumberOfElementsNumericUpDown);
             this.SortTabPage.Controls.Add(this.SortNumberOfElementsLabel);
             this.SortTabPage.Controls.Add(this.SortStartingDataLabel);
@@ -73,6 +76,38 @@
             this.SortTabPage.TabIndex = 0;
             this.SortTabPage.Text = "Sortowanie";
             this.SortTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SortNumberOfElementsNumericUpDown
+            // 
+            this.SortNumberOfElementsNumericUpDown.Location = new System.Drawing.Point(19, 130);
+            this.SortNumberOfElementsNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.SortNumberOfElementsNumericUpDown.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.SortNumberOfElementsNumericUpDown.Name = "SortNumberOfElementsNumericUpDown";
+            this.SortNumberOfElementsNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.SortNumberOfElementsNumericUpDown.TabIndex = 6;
+            this.SortNumberOfElementsNumericUpDown.ThousandsSeparator = true;
+            this.SortNumberOfElementsNumericUpDown.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            // 
+            // SortNumberOfElementsLabel
+            // 
+            this.SortNumberOfElementsLabel.AutoSize = true;
+            this.SortNumberOfElementsLabel.Location = new System.Drawing.Point(16, 114);
+            this.SortNumberOfElementsLabel.Name = "SortNumberOfElementsLabel";
+            this.SortNumberOfElementsLabel.Size = new System.Drawing.Size(83, 13);
+            this.SortNumberOfElementsLabel.TabIndex = 5;
+            this.SortNumberOfElementsLabel.Text = "Ilość elementów";
             // 
             // SortStartingDataLabel
             // 
@@ -139,6 +174,7 @@
             // 
             // PathfindingTabPage
             // 
+            this.PathfindingTabPage.Controls.Add(this.label2);
             this.PathfindingTabPage.Controls.Add(this.PathfindingAlgorithmLabel);
             this.PathfindingTabPage.Controls.Add(this.PathfindingAlgorithmComboBox);
             this.PathfindingTabPage.Controls.Add(this.PathfindingStartButton);
@@ -149,38 +185,6 @@
             this.PathfindingTabPage.TabIndex = 1;
             this.PathfindingTabPage.Text = "Pathfinding";
             this.PathfindingTabPage.UseVisualStyleBackColor = true;
-            // 
-            // SortNumberOfElementsLabel
-            // 
-            this.SortNumberOfElementsLabel.AutoSize = true;
-            this.SortNumberOfElementsLabel.Location = new System.Drawing.Point(16, 114);
-            this.SortNumberOfElementsLabel.Name = "SortNumberOfElementsLabel";
-            this.SortNumberOfElementsLabel.Size = new System.Drawing.Size(83, 13);
-            this.SortNumberOfElementsLabel.TabIndex = 5;
-            this.SortNumberOfElementsLabel.Text = "Ilość elementów";
-            // 
-            // SortNumberOfElementsNumericUpDown
-            // 
-            this.SortNumberOfElementsNumericUpDown.Location = new System.Drawing.Point(19, 130);
-            this.SortNumberOfElementsNumericUpDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.SortNumberOfElementsNumericUpDown.Minimum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.SortNumberOfElementsNumericUpDown.Name = "SortNumberOfElementsNumericUpDown";
-            this.SortNumberOfElementsNumericUpDown.Size = new System.Drawing.Size(120, 20);
-            this.SortNumberOfElementsNumericUpDown.TabIndex = 6;
-            this.SortNumberOfElementsNumericUpDown.ThousandsSeparator = true;
-            this.SortNumberOfElementsNumericUpDown.Value = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
             // 
             // PathfindingAlgorithmLabel
             // 
@@ -208,13 +212,33 @@
             // 
             // PathfindingStartButton
             // 
-            this.PathfindingStartButton.Location = new System.Drawing.Point(91, 172);
+            this.PathfindingStartButton.Location = new System.Drawing.Point(91, 188);
             this.PathfindingStartButton.Name = "PathfindingStartButton";
             this.PathfindingStartButton.Size = new System.Drawing.Size(75, 23);
             this.PathfindingStartButton.TabIndex = 7;
             this.PathfindingStartButton.Text = "Start";
             this.PathfindingStartButton.UseVisualStyleBackColor = true;
             this.PathfindingStartButton.Click += new System.EventHandler(this.PathfindingStartButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(169, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 39);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Spacja - puza\r\nS - jeden krok\r\nEsc - wyjście";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(169, 104);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "C - przesuwanie węzła startowego\r\nSpacja - wyznaczanie celu\r\nLPM - dodawanie ścia" +
+    "n\r\nPPM - usuwanie ścian\r\nW A S D - przesuwanie kamery\r\nZ - przybliżanie \r\nX - od" +
+    "dalanie\r\nEsc - zamykanie okna";
             // 
             // MainForm
             // 
@@ -227,9 +251,9 @@
             this.tabControl.ResumeLayout(false);
             this.SortTabPage.ResumeLayout(false);
             this.SortTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SortNumberOfElementsNumericUpDown)).EndInit();
             this.PathfindingTabPage.ResumeLayout(false);
             this.PathfindingTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SortNumberOfElementsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,6 +273,8 @@
         private System.Windows.Forms.Label PathfindingAlgorithmLabel;
         private System.Windows.Forms.ComboBox PathfindingAlgorithmComboBox;
         private System.Windows.Forms.Button PathfindingStartButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

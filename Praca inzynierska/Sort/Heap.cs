@@ -19,6 +19,8 @@ namespace Praca_inzynierska.Sort
 
             if (left < n && bars.getValue(left) > bars.getValue(largest))
             {
+                accesses++;
+                comparisons++;
                 bars.setColor(largest, Color.Green);
                 bars.setColor(left, Color.Green);
                 Thread.Sleep(3);
@@ -27,6 +29,8 @@ namespace Praca_inzynierska.Sort
             Thread.Sleep(3);
             if (right < n && bars.getValue(right) > bars.getValue(largest))
             {
+                accesses++;
+                comparisons++;
                 bars.setColor(largest, Color.Green);
                 bars.setColor(right, Color.Green);
                 Thread.Sleep(3);
@@ -38,6 +42,9 @@ namespace Praca_inzynierska.Sort
             {
                 Thread.Sleep(3);
                 bars.swap(i, largest);
+                accesses++;
+                accesses++;
+                accesses++;
                 heapify(bars, n, largest);
             }
         }
@@ -48,11 +55,15 @@ namespace Praca_inzynierska.Sort
 
             for (int i = bars.size - 1; i >= 0; i--)
             {
-                while (isPaused()) ;
+                while (isPaused());
                 Thread.Sleep(3);
                 bars.swap(0, i);
+                accesses++;
+                accesses++;
+                accesses++;
                 heapify(bars, i, 0);
             }
+            finished = true;
         }
     }
 }
